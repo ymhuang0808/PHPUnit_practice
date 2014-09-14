@@ -1,12 +1,19 @@
 <?php
+require 'lib/CsvFileIterator.php';
+
 class DataTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider additionProvider
+	 * @dataProvider csvProvider
 	 */
 	public function testAdd($a, $b, $expected)
 	{
 		$this->assertEquals($expected, $a + $b);
+	}
+
+	public function csvProvider()
+	{
+		return new CsvFileIterator(__DIR__ . '/data/data.csv');
 	}
 
 	public function additionProvider()
